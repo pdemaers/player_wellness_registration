@@ -171,6 +171,34 @@ def get_player_ids() -> pd.Series:
 # --------------------------
 
 def pre_training_tab():
+    """
+    Displays the Pre-Training Wellness Check form in the Streamlit application.
+
+    This form allows players to submit their wellness status before a training session,
+    including how they feel, how many hours they slept, and the date of entry. The
+    submitted data is stored in the 'player_wellness' MongoDB collection.
+
+    Args:
+        None
+
+    Returns:
+        None
+
+    Side Effects:
+        Renders Streamlit UI components including selectbox, date input, radio buttons, 
+        slider, and a submit button.
+        Submits a document to the 'player_wellness' collection in MongoDB upon form submission.
+
+    Data Submitted:
+        player_id (str): Selected player ID from the dropdown.
+        date (str): Selected date, formatted as 'YYYYMMDD'.
+        feeling (int): A rating from 1 (sick) to 5 (buzzing), selected via pill-style buttons.
+        sleep_hours (float): Number of hours slept, between 0.0 and 12.0.
+        timestamp (datetime): The exact moment the form was submitted.
+
+    Raises:
+        None
+    """
     st.header(":material/hotel: Pre-Training Wellness Check")
 
     # Create two columns
@@ -220,9 +248,38 @@ def pre_training_tab():
 # -------------------------------
 
 def post_training_tab():
+    """
+    Displays the Post-Training RPE Score form in the Streamlit application.
+
+    This form allows players to submit their perceived exertion score after a training session,
+    along with the duration of the session and the date. The submitted data is stored in the
+    'player_rpe' MongoDB collection.
+
+    Args:
+        None
+
+    Returns:
+        None
+
+    Side Effects:
+        Renders Streamlit UI components including selectbox, date input, radio buttons, 
+        number input, and a submit button.
+        Stores user input in `st.session_state` for selected RPE score and training minutes.
+        Submits a document to the 'player_rpe' collection in MongoDB upon form submission.
+
+    Data Submitted:
+        post_player_id (str): Selected player ID from the dropdown.
+        post_date (str): Selected date, formatted as 'YYYY-MM-DD'.
+        rpe_score (int): Perceived exertion score from 1 (very light) to 10 (maximum effort).
+        training_minutes (int): Duration of the session in minutes (0 to 120).
+        timestamp (datetime): The exact moment the form was submitted.
+
+    Raises:
+        None
+    """
     st.header(":material/fitness_center: Post-Training RPE Score")
 
-# Create two columns
+    # Create two columns
     col1, col2 = st.columns(2)
 
     # Put one input in each column
@@ -272,6 +329,24 @@ def post_training_tab():
 
 # Display BORG scale descriptions
 def borg_scale_tab():
+    """
+    Displays the BORG Scale (RPE 1–10) explanation tab in the Streamlit application.
+
+    This tab provides a visual reference for players to better understand how to rate their
+    perceived exertion after training sessions, based on the BORG RPE scale.
+
+    Args:
+        None
+
+    Returns:
+        None
+
+    Side Effects:
+        Renders a header and displays an explanatory image of the BORG RPE scale.
+
+    Raises:
+        None
+    """    
     st.header(":material/directions_run: BORG Scale (RPE 1-10) Explanation")
     st.image("images/BORG_RPE_scale.png")
 

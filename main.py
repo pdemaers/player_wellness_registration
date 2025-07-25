@@ -379,8 +379,8 @@ def main():
     """
     st.set_page_config(
         page_title="Player Wellness App",
-        layout="centered",
-        page_icon=":weight_lifter:"
+        page_icon=":weight_lifter:",
+        layout="centered"
     )
 
     st.title("Player Wellness Registration")

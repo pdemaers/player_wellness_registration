@@ -280,7 +280,7 @@ def borg_scale_tab():
 st.set_page_config(
     page_title="Player Wellness App",
     layout="centered",
-    page_icon=":weight-lifter:")
+    page_icon=":weight_lifter:")
 
 st.title("Player Wellness Registration")
 

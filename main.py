@@ -178,7 +178,7 @@ def pre_training_tab():
 
     # Put one input in each column
     with col1:
-        pre_player_id = st.selectbox(":material/badge: Your player ID", options=get_player_ids(), key="player_wellness")
+        pre_player_id = st.selectbox(":material/badge: Your player ID", options=get_player_ids(), index=None, key="player_wellness")
 
     with col2:
         pre_date = st.date_input(":material/calendar_month: Select date", value=datetime.today(), format="DD/MM/YYYY", max_value=datetime.today(), key="pre_date")
@@ -227,7 +227,7 @@ def post_training_tab():
 
     # Put one input in each column
     with col1:
-        post_player_id = st.selectbox(":material/badge: Your player ID", options=get_player_ids(), key="player_rpe")
+        post_player_id = st.selectbox(":material/badge: Your player ID", options=get_player_ids(), index=None, key="player_rpe")
 
     with col2:
         post_date = st.date_input(":material/calendar_month: Select date", value=datetime.today(), format="DD/MM/YYYY", max_value=datetime.today(), key="post_date")

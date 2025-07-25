@@ -277,7 +277,11 @@ def borg_scale_tab():
 
 # Main function to run the app
 
-st.set_page_config(page_title="Player Wellness App", layout="centered")
+st.set_page_config(
+    page_title="Player Wellness App",
+    layout="centered",
+    page_icon=":weight-lifter:")
+
 st.title("Player Wellness Registration")
 
 tabs = st.tabs(["Pre-Training", "Post-Training RPE", "BORG Scale Info"])

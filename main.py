@@ -352,20 +352,47 @@ def borg_scale_tab():
 
 # Main function to run the app
 
-st.set_page_config(
-    page_title="Player Wellness App",
-    layout="centered",
-    page_icon=":weight_lifter:")
+def main():
+    """
+    Initializes and runs the Streamlit Player Wellness App.
 
-st.title("Player Wellness Registration")
+    This function sets up the page configuration and renders the main navigation tabs:
+    - Pre-Training Wellness Check
+    - Post-Training RPE Score
+    - BORG Scale (RPE) Explanation
 
-tabs = st.tabs(["Pre-Training", "Post-Training RPE", "BORG Scale Info"])
+    Each tab is linked to its corresponding function that manages the form input and UI rendering.
 
-with tabs[0]:
-    pre_training_tab()
-with tabs[1]:
-    post_training_tab()
-with tabs[2]:
-    borg_scale_tab()
+    Args:
+        None
 
+    Returns:
+        None
 
+    Side Effects:
+        Sets the Streamlit page configuration.
+        Renders the app UI including title and tab layout.
+        Calls tab-specific functions to handle data input and visualization.
+
+    Raises:
+        None
+    """
+    st.set_page_config(
+        page_title="Player Wellness App",
+        layout="centered",
+        page_icon=":weight_lifter:"
+    )
+
+    st.title("Player Wellness Registration")
+
+    tabs = st.tabs(["Pre-Training", "Post-Training RPE", "BORG Scale Info"])
+
+    with tabs[0]:
+        pre_training_tab()
+    with tabs[1]:
+        post_training_tab()
+    with tabs[2]:
+        borg_scale_tab()
+
+if __name__ == "__main__":
+    main()

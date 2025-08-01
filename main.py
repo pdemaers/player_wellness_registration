@@ -263,7 +263,7 @@ def post_training_tab():
 
     Side Effects:
         Renders Streamlit UI components including selectbox, date input, radio buttons, 
-        number input, and a submit button.
+        number input, toggle, and a submit button.
         Stores user input in `st.session_state` for selected RPE score and training minutes.
         Submits a document to the 'player_rpe' collection in MongoDB upon form submission.
 
@@ -272,6 +272,7 @@ def post_training_tab():
         post_date (str): Selected date, formatted as 'YYYY-MM-DD'.
         rpe_score (int): Perceived exertion score from 1 (very light) to 10 (maximum effort).
         training_minutes (int): Duration of the session in minutes (0 to 120).
+        individual_session (bool): Indication if the players did an individual training session.
         timestamp (datetime): The exact moment the form was submitted.
 
     Raises:
@@ -316,12 +317,19 @@ def post_training_tab():
     # Save training minutes in session state
     st.session_state.training_minutes = training_minutes
 
+    # Individual session registration
+    individual_session = st.toggle("Individual session", value=False)
+
+    # Save the individual session in session state
+    st.session_state.individual_session = individual_session
+
     if st.button("Submit RPE Entry", icon=":material/save:"):
         entry = {
             "post_player_id": post_player_id,
             "post_date": post_date.strftime("%Y-%m-%d"),
             "rpe_score": post_session_rpe,
             "training_minutes": training_minutes,
+            "individual_session": individual_session,
             "timestamp": datetime.now()
         }
         if insert_data("player_rpe", entry):
@@ -379,7 +387,7 @@ def main():
     """
     st.set_page_config(
         page_title="Player Wellness App",
-        page_icon=":weight_lifter:",
+        page_icon="🏋️‍♂️",
         layout="centered"
     )
 

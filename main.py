@@ -11,6 +11,7 @@ from pymongo.collection import Collection
 from datetime import datetime
 import calendar
 import pandas as pd
+import numpy as np
 
 # ----------------------------
 # Configuration and Constants
@@ -242,9 +243,9 @@ def pre_training_tab():
 
     if st.button("Submit Pre-Training Entry", icon=":material/save:"):
         entry = {
-            "player_id": pre_player_id,
+            "player_id": np.int32(pre_player_id),
             "session_id": session_id,
-            "date": datetime.combine(pre_date, datetime.min.time()),
+            "date": datetime.combine(pre_date, datetime.min.time()).isoformat(),
             "feeling": pre_training_feeling,
             "sleep_hours": sleep_hours,
             "timestamp": datetime.now()
@@ -337,9 +338,9 @@ def post_training_tab():
 
     if st.button("Submit RPE Entry", icon=":material/save:"):
         entry = {
-            "player_id": post_player_id,
+            "player_id": np.int32(post_player_id),
             "session_id": session_id,
-            "date": datetime.combine(post_date, datetime.min.time()),
+            "date": datetime.combine(post_date, datetime.min.time()).isoformat(),
             "rpe_score": post_session_rpe,
             "training_minutes": training_minutes,
             "individual_session": individual_session,

@@ -1,3 +1,8 @@
+"""Player Wellness Registration App
+
+A multi-tab Streamlit app for managing player wellness, training sessions, and RPE data. Built for use by coaching staff with data stored in MongoDB.
+"""
+
 import logging
 from typing import Dict, List, Optional, Union
 import streamlit as st
@@ -211,6 +216,9 @@ def pre_training_tab():
     with col2:
         pre_date = st.date_input(":material/calendar_month: Select date", value=datetime.today(), format="DD/MM/YYYY", max_value=datetime.today(), key="pre_date")
     
+    session_id = f"{pre_date.strftime('%Y%m%d')}U{str(pre_player_id)[:2]}"
+    st.session_state.session_id = session_id
+
     # Radio buttons with emojis
     st.subheader("How about today?")
     
@@ -235,7 +243,8 @@ def pre_training_tab():
     if st.button("Submit Pre-Training Entry", icon=":material/save:"):
         entry = {
             "player_id": pre_player_id,
-            "date": pre_date.strftime("%Y%m%d"),
+            "session_id": session_id,
+            "date": datetime.combine(pre_date, datetime.min.time()),
             "feeling": pre_training_feeling,
             "sleep_hours": sleep_hours,
             "timestamp": datetime.now()
@@ -290,6 +299,9 @@ def post_training_tab():
     with col2:
         post_date = st.date_input(":material/calendar_month: Select date", value=datetime.today(), format="DD/MM/YYYY", max_value=datetime.today(), key="post_date")
     
+    session_id = f"{post_date.strftime('%Y%m%d')}U{str(post_player_id)[:2]}"
+    st.session_state.session_id = session_id
+
     st.subheader("Rate of Perceived Exertion (RPE)")
 
     # Set default session state
@@ -325,8 +337,9 @@ def post_training_tab():
 
     if st.button("Submit RPE Entry", icon=":material/save:"):
         entry = {
-            "post_player_id": post_player_id,
-            "post_date": post_date.strftime("%Y-%m-%d"),
+            "player_id": post_player_id,
+            "session_id": session_id,
+            "date": datetime.combine(post_date, datetime.min.time()),
             "rpe_score": post_session_rpe,
             "training_minutes": training_minutes,
             "individual_session": individual_session,

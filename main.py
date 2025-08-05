@@ -338,7 +338,7 @@ def post_training_tab():
 
     if st.button("Submit RPE Entry", icon=":material/save:"):
         entry = {
-            "player_id": np.int32(post_player_id),
+            "player_id": int(post_player_id),
             "session_id": session_id,
             "date": datetime.combine(post_date, datetime.min.time()).isoformat(),
             "rpe_score": post_session_rpe,

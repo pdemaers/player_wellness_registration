@@ -346,7 +346,7 @@ def post_training_tab():
             "timestamp": datetime.now()
         }
         if insert_data("player_rpe", entry):
-            st.success(":material/check_box: RPE data submitted successfully!")
+            st.success(":material/check_box: RPE data submitted successfully!!")
 
 # Display BORG scale descriptions
 def borg_scale_tab():

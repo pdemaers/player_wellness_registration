@@ -23,4 +23,4 @@ Thumbs.db
 .streamlit/*.log
 
 # Optional: ignore Jupyter notebooks if used during development
-*.ipynb
+*.ipynb.devcontainer/

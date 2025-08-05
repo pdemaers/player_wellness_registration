@@ -243,7 +243,7 @@ def pre_training_tab():
 
     if st.button("Submit Pre-Training Entry", icon=":material/save:"):
         entry = {
-            "player_id": np.int32(pre_player_id),
+            "player_id": int(pre_player_id),
             "session_id": session_id,
             "date": datetime.combine(pre_date, datetime.min.time()).isoformat(),
             "feeling": pre_training_feeling,
